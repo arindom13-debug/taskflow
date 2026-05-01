@@ -1,4 +1,15 @@
+import { useState } from "react";
+
 function App() {
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = () => {
+    if (email.includes("@")) {
+      setSubmitted(true);
+    }
+  };
+
   return (
     <div
       style={{
@@ -23,7 +34,16 @@ function App() {
           backgroundColor: "rgba(3, 7, 18, 0.85)",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <a
+          href="#"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            textDecoration: "none",
+            color: "white",
+          }}
+        >
           <div
             style={{
               width: "32px",
@@ -40,7 +60,7 @@ function App() {
             T
           </div>
           <span style={{ fontWeight: "700", fontSize: "18px" }}>TaskFlow</span>
-        </div>
+        </a>
         <div style={{ display: "flex", gap: "32px" }}>
           <a
             href="#features"
@@ -167,35 +187,56 @@ function App() {
             marginBottom: "20px",
           }}
         >
-          <input
-            type="email"
-            placeholder="Enter your work email"
-            style={{
-              padding: "12px 20px",
-              borderRadius: "8px",
-              border: "1px solid #374151",
-              backgroundColor: "#0f172a",
-              color: "white",
-              fontSize: "15px",
-              width: "280px",
-              outline: "none",
-            }}
-          />
-          <a
-            href="#"
-            style={{
-              backgroundColor: "#7c3aed",
-              color: "white",
-              padding: "12px 28px",
-              borderRadius: "8px",
-              textDecoration: "none",
-              fontWeight: "600",
-              fontSize: "15px",
-              whiteSpace: "nowrap",
-            }}
-          >
-            Start for free →
-          </a>
+          {!submitted ? (
+            <>
+              <input
+                type="email"
+                placeholder="Enter your work email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                style={{
+                  padding: "12px 20px",
+                  borderRadius: "8px",
+                  border: "1px solid #374151",
+                  backgroundColor: "#0f172a",
+                  color: "white",
+                  fontSize: "15px",
+                  width: "280px",
+                  outline: "none",
+                }}
+              />
+              <button
+                onClick={handleSubmit}
+                style={{
+                  backgroundColor: "#7c3aed",
+                  color: "white",
+                  padding: "12px 28px",
+                  borderRadius: "8px",
+                  border: "none",
+                  fontWeight: "600",
+                  fontSize: "15px",
+                  whiteSpace: "nowrap",
+                  cursor: "pointer",
+                }}
+              >
+                Start for free →
+              </button>
+            </>
+          ) : (
+            <div
+              style={{
+                backgroundColor: "rgba(124, 58, 237, 0.15)",
+                border: "1px solid rgba(124, 58, 237, 0.4)",
+                borderRadius: "8px",
+                padding: "12px 28px",
+                color: "#c084fc",
+                fontWeight: "600",
+                fontSize: "15px",
+              }}
+            >
+              ✓ You're on the waitlist! We'll be in touch soon.
+            </div>
+          )}
         </div>
         <p style={{ color: "#6b7280", fontSize: "13px" }}>
           No credit card required · Free 14-day trial · Cancel anytime
