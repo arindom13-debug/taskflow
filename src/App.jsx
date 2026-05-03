@@ -619,6 +619,7 @@ function StickyCTA() {
     <AnimatePresence>
       {vis && (
         <motion.div
+          className="sticky-cta"
           initial={{ y: 90, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 90, opacity: 0 }}
@@ -862,11 +863,28 @@ export default function App() {
         .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 20px 14px; cursor: none; font-size: 15px; font-weight: 500; transition: color .25s; color: #d4d4d8; }
         .faq-q:hover { color: #c4b5fd; }
         @media (max-width: 900px) {
-          .hero-grid { grid-template-columns: 1fr !important; }
-          .hero-graphic { display: none; }
-          .footer-grid { grid-template-columns: 1fr 1fr !important; }
-          section, .section-pad { padding-left: 24px !important; padding-right: 24px !important; }
-        }
+        .hero-grid { grid-template-columns: 1fr !important; padding: 100px 24px 60px !important; gap: 20px !important; }
+        .hero-graphic { display: none !important; }
+        .footer-grid { grid-template-columns: 1fr 1fr !important; }
+        .section-pad { padding-left: 24px !important; padding-right: 24px !important; }
+        nav { padding: 0 24px !important; }
+        h1 { font-size: 42px !important; letter-spacing: -2px !important; }
+        h2 { font-size: 36px !important; letter-spacing: -1.5px !important; }
+      }
+      @media (max-width: 600px) {
+        h1 { font-size: 36px !important; letter-spacing: -1.5px !important; }
+        h2 { font-size: 28px !important; letter-spacing: -1px !important; }
+        nav { padding: 0 16px !important; height: 56px !important; }
+        nav .nav-links { display: none !important; }
+        .mockup-grid { grid-template-columns: 1fr !important; }
+        .mockup-sidebar { display: none !important; }
+        .hero-grid { padding: 90px 16px 40px !important; }
+        .features-grid { grid-template-columns: 1fr !important; }
+        .pricing-grid { grid-template-columns: 1fr !important; }
+        .testimonials-grid { grid-template-columns: 1fr !important; }
+        .footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+        .sticky-cta { left: 16px !important; right: 16px !important; transform: none !important; width: auto !important; }
+      }
       `}</style>
 
       <AtmosphericBackground />
@@ -932,7 +950,7 @@ export default function App() {
               TaskFlow
             </span>
           </a>
-          <div style={{ display: "flex", gap: 28 }}>
+          <div className="nav-links" style={{ display: "flex", gap: 28 }}>
             {["Features", "Pricing", "Changelog", "Docs"].map((l) => (
               <a key={l} href={`#${l.toLowerCase()}`} className="nlink">
                 {l}
@@ -1612,6 +1630,7 @@ export default function App() {
             </p>
           </motion.div>
           <div
+            className="features-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(3,1fr)",
@@ -1767,8 +1786,10 @@ export default function App() {
                   gridTemplateColumns: "185px 1fr",
                   minHeight: 400,
                 }}
+                className="mockup-grid"
               >
                 <div
+                  className="mockup-sidebar"
                   style={{
                     background: "#050510",
                     borderRight: "1px solid rgba(255,255,255,0.03)",
@@ -1963,6 +1984,7 @@ export default function App() {
             </h2>
           </motion.div>
           <div
+            className="testimonials-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))",
@@ -2159,6 +2181,7 @@ export default function App() {
             </div>
           </motion.div>
           <div
+            className="pricing-grid"
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))",
